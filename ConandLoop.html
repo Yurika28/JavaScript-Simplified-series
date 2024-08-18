@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Order System</title>
+</head>
+<body>
+    
+    <h1>Delivery Order</h1>
+    <h2>Menu:</h2>
+    <ol>
+        <li>Burger</li>
+        <li>Pizza</li>
+        <li>Salad</li>
+    </ol>
+
+    <label for="orderInput">Enter the number of the item you want to order: </label>
+    <input type="number" id="orderInput">
+    <button onclick="placeOrder()">Place Order</button>
+
+    <h3>Order Status:</h3>
+    <div id="orderStatus"></div>
+
+    <h3>Current Stock:</h3>
+    <div id="stockStatus"></div>
+
+    <script>
+        // Initial stock for each menu item
+        let stock = {
+            "Burger": 8,
+            "Pizza": 9,
+            "Salad": 12
+        };
+
+        // Function to display the current stock
+        function displayStock() {
+            let stockStatus = '';
+            for (let item in stock) {
+                stockStatus += `${item}: ${stock[item]} left<br>`;
+            }
+            document.getElementById('stockStatus').innerHTML = stockStatus;
+        }
+
+        // Display initial stock
+        displayStock();
+
+        // Function to handle placing an order
+        function placeOrder() {
+            const orderInput = document.getElementById('orderInput').value;
+            let orderStatus = '';
+
+            // Conditional statements to match the menu selection
+            if (orderInput == 1) {
+                if (stock["Burger"] > 0) {
+                    stock["Burger"]--;
+                    orderStatus = "You ordered a Burger!";
+                } else {
+                    orderStatus = "Sorry, we're out of Burgers.";
+                }
+            } else if (orderInput == 2) {
+                if (stock["Pizza"] > 0) {
+                    stock["Pizza"]--;
+                    orderStatus = "You ordered a Pizza!";
+                } else {
+                    orderStatus = "Sorry, we're out of Pizzas.";
+                }
+            } else if (orderInput == 3) {
+                if (stock["Salad"] > 0) {
+                    stock["Salad"]--;
+                    orderStatus = "You ordered a Salad!";
+                } else {
+                    orderStatus = "Sorry, we're out of Salads.";
+                }
+            } else {
+                orderStatus = "Invalid selection. Please choose a valid menu item.";
+            }
+
+            // Display order status and updated stock
+            document.getElementById('orderStatus').innerHTML = orderStatus;
+            displayStock();
+        }
+    </script>
+
+</body>
+</html>

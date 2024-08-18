@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Selection with Nutritional Values</title>
+</head>
+<body style=" background: rgb(238,174,202);
+background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); ">
+    <h1 style="color: white;">Menu Selection</h1>
+    <p style="margin: 10px; font-size: 18px;">Select a meal type and dish number to see your choice and its nutritional value:</p>
+    <br>
+
+    <!-- Radio Buttons for Meal Type -->
+    <div style="margin: 10px; font-size: 16px;">
+        <label>
+            <input type="radio" name="mealType" value="Breakfast" checked> Breakfast
+        </label>
+        <label>
+            <input type="radio" name="mealType" value="Lunch"> Lunch
+        </label>
+        <label>
+            <input type="radio" name="mealType" value="Dinner"> Dinner
+        </label>
+    </div>
+
+    <br>
+
+    <!-- Input for Dish Number -->
+    <label style="margin: 10px; font-size: 16px;" for="dish">Dish Number:</label>
+    <input type="number" id="dish" min="1" max="3" value="1">
+
+    <!-- Button to Check Selection -->
+    <button onclick="checkSelection()" style="background-color: rgb(173, 216, 230); color:black;">Check Selection</button>
+
+    <!-- Paragraph to Display Result -->
+    <p id="result"></p>
+
+    <script>
+        function checkSelection() {
+            // Get the selected meal type
+            let mealType = document.querySelector('input[name="mealType"]:checked').value;
+            let dish = parseInt(document.getElementById('dish').value);
+            let result = "";
+
+            switch (mealType) {
+                case "Breakfast":
+                    switch (dish) {
+                        case 1:
+                            result = "You selected Pancakes. Nutritional value: 350 calories.";
+                            break;
+                        case 2:
+                            result = "You selected Omelette. Nutritional value: 250 calories.";
+                            break;
+                        case 3:
+                            result = "You selected French Toast. Nutritional value: 400 calories.";
+                            break;
+                        default:
+                            result = "Invalid breakfast selection.";
+                    }
+                    break;
+
+                case "Lunch":
+                    switch (dish) {
+                        case 1:
+                            result = "You selected Grilled Cheese Sandwich. Nutritional value: 500 calories.";
+                            break;
+                        case 2:
+                            result = "You selected Caesar Salad. Nutritional value: 300 calories.";
+                            break;
+                        case 3:
+                            result = "You selected Chicken Wrap. Nutritional value: 450 calories.";
+                            break;
+                        default:
+                            result = "Invalid lunch selection.";
+                    }
+                    break;
+
+                case "Dinner":
+                    switch (dish) {
+                        case 1:
+                            result = "You selected Steak. Nutritional value: 700 calories.";
+                            break;
+                        case 2:
+                            result = "You selected Salmon. Nutritional value: 600 calories.";
+                            break;
+                        case 3:
+                            result = "You selected Pasta. Nutritional value: 550 calories.";
+                            break;
+                        default:
+                            result = "Invalid dinner selection.";
+                    }
+                    break;
+
+                default:
+                    result = "Invalid meal type.";
+            }
+
+            // Display the result in the paragraph
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
+

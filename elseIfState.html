@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Quiz Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            max-width: 600px; 
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simple Quiz</h1>
+
+    <div class="question">
+        <h2>1. What is the capital of France?</h2>
+        <label><input type="radio" name="question1" value="a"> A. London</label>
+        <label><input type="radio" name="question1" value="b"> B. Berlin</label>
+        <label><input type="radio" name="question1" value="c"> C. Paris</label>
+    </div>
+
+    <div class="question">
+        <h2>2. What is 2 + 2?</h2>
+        <label><input type="radio" name="question2" value="a"> A. 3</label>
+        <label><input type="radio" name="question2" value="b"> B. 4</label>
+        <label><input type="radio" name="question2" value="c"> C. 5</label>
+    </div>
+
+    <div class="question">
+        <h2>3. What color is the sky on a clear day?</h2>
+        <label><input type="radio" name="question3" value="a"> A. Blue</label>
+        <label><input type="radio" name="question3" value="b"> B. Green</label>
+        <label><input type="radio" name="question3" value="c"> C. Red</label>
+    </div>
+
+    <button onclick="checkQuiz()">Submit Answers</button>
+
+    <div id="result"></div>
+
+    <script>
+        function checkQuiz() {
+            // Get the selected answers
+            const q1 = document.querySelector('input[name="question1"]:checked');
+            const q2 = document.querySelector('input[name="question2"]:checked');
+            const q3 = document.querySelector('input[name="question3"]:checked');
+            
+            let score = 0;
+
+            // Question 1: Correct answer is 'c'
+            if (q1 && q1.value === 'c') {
+                score++;
+            }
+
+            // Question 2: Correct answer is 'b'
+            if (q2 && q2.value === 'b') {
+                score++;
+            }
+
+            // Question 3: Correct answer is 'a'
+            if (q3 && q3.value === 'a') {
+                score++;
+            }
+
+            // Display the result
+            const resultDiv = document.getElementById('result');
+            if (score === 3) {
+                resultDiv.textContent = `Excellent! You scored ${score} out of 3.`;
+                resultDiv.style.color = 'green';
+            } else if (score === 2) {
+                resultDiv.textContent = `Good job! You scored ${score} out of 3.`;
+                resultDiv.style.color = 'orange';
+            } else if (score === 1) {
+                resultDiv.textContent = `You scored ${score} out of 3. Keep practicing!`;
+                resultDiv.style.color = 'blue';
+            } else {
+                resultDiv.textContent = `You scored ${score} out of 3. Try again!`;
+                resultDiv.style.color = 'red';
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        input {
+            padding: 5px;
+            width: 100px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Countdown Timer</h1>
+
+    <input type="number" id="startNumber" placeholder="Enter start number">
+    <button onclick="startCountdown()">Start Countdown</button>
+
+    <div id="result"></div>
+
+    <script>
+        function startCountdown() {
+            const startNumber = parseInt(document.getElementById('startNumber').value);
+            const resultDiv = document.getElementById('result');
+
+            // Validate input
+            if (isNaN(startNumber) || startNumber <= 0) {
+                resultDiv.textContent = 'Please enter a valid positive number.';
+                resultDiv.style.color = 'red';
+                return;
+            }
+
+            resultDiv.innerHTML = ''; // Clear previous results
+            resultDiv.style.color = 'black';
+
+            let currentNumber = startNumber;
+
+            // Use a while loop to count down to zero
+            while (currentNumber >= 0) {
+                resultDiv.innerHTML += `${currentNumber}<br>`;
+                currentNumber--;
+            }
+
+            resultDiv.innerHTML += 'Countdown complete!';
+        }
+    </script>
+</body>
+</html>
